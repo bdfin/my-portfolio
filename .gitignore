@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/BeauFindlay/BeauFindlay/package-lock.json
+/BeauFindlay/BeauFindlay/package.json
