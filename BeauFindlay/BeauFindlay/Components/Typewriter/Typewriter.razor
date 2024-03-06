@@ -10,7 +10,7 @@ else
 }
 
 @code {
-    private const int typingDelayMilliseconds = 100;
+    private const int typingDelayMilliseconds = 80;
     private const int lineEndDelayMilliseconds = 1000;
 
     private static List<Typewriter> instances = [];
@@ -22,6 +22,8 @@ else
     
     [Parameter]
     public string Text { get; set; } = "";
+    
+    public static event Action? OnAllTypingCompleted;
 
     protected override void OnInitialized()
     {
@@ -73,6 +75,12 @@ else
             delayTimer.Dispose();
             UpdateCursorVisibility();
             StartNextInstanceTyping();
+            
+            if (!instances.Any())
+            {
+                OnAllTypingCompleted?.Invoke();
+            }
+            
             InvokeAsync(StateHasChanged);
         };
         
