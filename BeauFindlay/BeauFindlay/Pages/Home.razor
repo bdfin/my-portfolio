@@ -1,12 +1,46 @@
 ﻿@page "/"
 
+@implements IDisposable
+
 <PageTitle>Home - Beau Findlay</PageTitle>
 
 <div>
-   <h1 class="text-3xl">
-      <Typewriter Text="Hi! I'm Beau."/>
-   </h1>
-   <p class="text-lg mt-3">
-      <Typewriter Text="Welcome to my portfolio site." />
-   </p>
+    <h1 class="text-3xl">
+        <Typewriter Text="Hi! I'm Beau."/>
+    </h1>
+
+    <p class="text-xl mt-8">
+        <Typewriter Text="I'm a software engineer and I love building cool stuff."/>
+    </p>
+
+    <h2 class="text-2xl mt-10 underline underline-offset-4">
+        <Typewriter Text="A bit about me"/>
+    </h2>
+
+    <p class="text-xl mt-4">
+        <Typewriter Text="I mostly specialise in back-end .NET development and I build and maintain systems that scale for hundreds of thousands of global users."/>
+    </p>
+
+    <p class="text-xl mt-4">
+        <Typewriter Text="I'm currently heading up the tech as CTO at a cool company called un:hurd."/>
+    </p>
 </div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        Typewriter.OnAllTypingCompleted += HandleTypingCompleted;
+    }
+
+    private static void HandleTypingCompleted()
+    {
+        Console.WriteLine("Typewriter finished typing.");
+    }
+
+    public void Dispose()
+    {
+        Typewriter.OnAllTypingCompleted -= HandleTypingCompleted;
+    }
+
+}
