@@ -1,3 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+@inject ITypewriterNotificationService TypingNotification
+
+<div class="flex flex-col min-h-screen">
+    <div class="p-8">
+        @Body
+    </div>
+    
+        <Footer></Footer>
+    
+</div>
+
+
+@code {
+
+
+}
