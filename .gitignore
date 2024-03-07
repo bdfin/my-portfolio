@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 /BeauFindlay/BeauFindlay/package-lock.json
 /BeauFindlay/BeauFindlay/package.json
+/BeauFindlay/src/BeauFindlay.Client/package-lock.json
+/BeauFindlay/src/BeauFindlay.Client/package.json
