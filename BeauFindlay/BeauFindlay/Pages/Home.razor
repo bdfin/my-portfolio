@@ -2,9 +2,11 @@
 
 @implements IDisposable
 
+@inject IJSRuntime JSRuntime
+
 <PageTitle>Home - Beau Findlay</PageTitle>
 
-@if (isFirstRender)
+@if (!hasPreviouslyRendered)
 {
     <h1 class="text-4xl">
         <Typewriter Text="Hi, I'm Beau."/>
@@ -14,12 +16,12 @@
         <Typewriter Name="@TypewriterConstants.Name.IntroComplete" Text="I'm a UK-based software engineer and I love building cool stuff."/>
     </p>
 
-    <h2 class="text-2xl mt-16 underline underline-offset-4">
+    <h2 class="text-2xl mt-16 font-semibold">
         <Typewriter Text="A bit about me"/>
     </h2>
 
     <p class="text-xl mt-4">
-        <Typewriter Text="I mostly specialise in back-end C#/.NET development and I build systems that scale for hundreds-of-thousands of global users."/>
+        <Typewriter Text="I mostly specialise in back-end C#/.NET development and I've built systems that scale for hundreds-of-thousands of global users."/>
     </p>
 
     <p class="text-xl mt-4">
@@ -28,38 +30,42 @@
 }
 else
 {
-    <h1 class="text-4xl">
-        Hi, I'm Beau.
-    </h1>
+    <h1 class="text-4xl">Hi, I'm Beau.</h1>
 
-    <p class="text-xl mt-4">
-        I'm a UK-based software engineer and I love building cool stuff.
-    </p>
+    <p class="text-xl mt-4">I'm a UK-based software engineer and I love building cool stuff.</p>
 
-    <h2 class="text-2xl mt-16 underline underline-offset-4">
-        A bit about me
-    </h2>
+    <h2 class="text-3xl mt-16 font-semibold">A bit about me</h2>
 
-    <p class="text-xl mt-4">
-        I mostly specialise in back-end C#/.NET development and I build systems that scale for hundreds-of-thousands of global users.
-    </p>
+    <p class="text-xl mt-4">I mostly specialise in back-end C#/.NET development and I've built systems that scale for hundreds-of-thousands of global users.</p>
 
-    <p class="text-xl mt-4">
-        I'm currently heading up the tech as CTO at a cool startup called un:hurd.
-    </p>
+    <p class="text-xl mt-4">I'm currently heading up the tech as CTO at a cool startup called <a href="https://unhurd.co.uk" target="_blank" class="underline">un:hurd</a>.</p>
 }
 
 
 @code {
-    private bool isFirstRender = true;
+    private const string ComponentKey  = "ComponentRendered_Home";
+    private bool hasPreviouslyRendered;
     
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            isFirstRender = false;
-            
             Typewriter.OnAllTypingCompleted += HandleTypingCompleted;
+            
+            var renderedBeforeAsString = await JSRuntime.InvokeAsync<string>("localStorage.getItem", ComponentKey);
+
+            var previousValue = hasPreviouslyRendered;
+            hasPreviouslyRendered = !string.IsNullOrEmpty(renderedBeforeAsString) && bool.Parse(renderedBeforeAsString);
+
+            if (!hasPreviouslyRendered)
+            {
+                await JSRuntime.InvokeVoidAsync("localStorage.setItem", ComponentKey, "true");
+            }
+            
+            if (previousValue != hasPreviouslyRendered)
+            {
+                StateHasChanged();
+            }
         }
     }
 
