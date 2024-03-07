@@ -1,5 +1,7 @@
 ﻿@using System.Timers
 
+@inject ITypewriterNotificationService NotificationService
+
 @if (DisplayCursor)
 {
     <span>@currentText<span class="blinking-cursor">|</span></span>
@@ -10,7 +12,7 @@ else
 }
 
 @code {
-    private const int typingDelayMilliseconds = 80;
+    private const int typingDelayMilliseconds = 50;
     private const int lineEndDelayMilliseconds = 1000;
 
     private static List<Typewriter> instances = [];
@@ -22,6 +24,9 @@ else
     
     [Parameter]
     public string Text { get; set; } = "";
+    
+    [Parameter]
+    public string? Name { get; set; }
     
     public static event Action? OnAllTypingCompleted;
 
@@ -75,6 +80,11 @@ else
             delayTimer.Dispose();
             UpdateCursorVisibility();
             StartNextInstanceTyping();
+
+            if (!string.IsNullOrWhiteSpace(Name))
+            {
+                NotificationService.NotifyTypingCompleted(new TypingCompletedEventArgs(Name));
+            }
             
             if (!instances.Any())
             {

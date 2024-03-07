@@ -10,3 +10,14 @@
 .blinking-cursor {
     animation: blink 1s step-end infinite;
 }
+
+.fade-in {
+    animation: fadeInAnimation ease 6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
