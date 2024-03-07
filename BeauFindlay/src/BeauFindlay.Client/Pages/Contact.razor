@@ -1,0 +1,23 @@
+﻿@page "/contact"
+
+@inject HttpClient HttpClient
+
+@if (!string.IsNullOrWhiteSpace(apiResponse))
+{
+    <p class="text-2xl">Response from Azure Function API: @apiResponse</p>
+}
+
+@code {
+    private string apiResponse = "";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await HttpClient.GetStringAsync("/api/Function1");
+
+        if (!string.IsNullOrWhiteSpace(response))
+        {
+            apiResponse = response;
+        }
+    }
+
+}
