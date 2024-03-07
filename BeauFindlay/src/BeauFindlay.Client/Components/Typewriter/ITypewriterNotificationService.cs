@@ -1,4 +1,4 @@
-﻿namespace BeauFindlay.Components.Typewriter;
+﻿namespace BeauFindlay.Client.Components.Typewriter;
 
 public interface ITypewriterNotificationService
 {

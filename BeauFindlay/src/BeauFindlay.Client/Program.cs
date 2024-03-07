@@ -1,5 +1,5 @@
-using BeauFindlay;
-using BeauFindlay.Components.Typewriter;
+using BeauFindlay.Client;
+using BeauFindlay.Client.Components.Typewriter;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
