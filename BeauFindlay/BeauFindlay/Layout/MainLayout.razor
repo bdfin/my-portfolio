@@ -3,14 +3,18 @@
 @inject ITypewriterNotificationService TypingNotification
 
 <div class="flex flex-col min-h-screen">
-    <div class="p-8">
+    <nav class="flex items-center justify-center h-20 space-x-6">
+        <NavLink href="/" Match="NavLinkMatch.All" ActiveClass="border-l-2 border-r-2 px-2 rounded">Home</NavLink>
+        <NavLink href="/this" Match="NavLinkMatch.All" ActiveClass="border-l-2 border-r-2 px-2 rounded">This App</NavLink>
+        <NavLink href="/contact" Match="NavLinkMatch.All" ActiveClass="border-l-2 border-r-2 px-2 rounded">Contact</NavLink>
+    </nav>
+    
+    <div class="px-4 md:px-8">
         @Body
     </div>
-    
-        <Footer></Footer>
-    
-</div>
 
+    <Footer></Footer>
+</div>
 
 @code {
 
