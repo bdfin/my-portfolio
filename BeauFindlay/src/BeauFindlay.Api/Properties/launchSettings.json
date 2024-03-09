@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "BeauFindlay.Api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7197",
+      "launchBrowser": false
+    }
+  }
+}
