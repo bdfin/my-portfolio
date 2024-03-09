@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeauFindlay.Client", "src\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeauFindlay.Api", "src\BeauFindlay.Api\BeauFindlay.Api.csproj", "{D2F248BF-8487-4CE7-B6AA-D558587A52DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeauFindlay.Shared", "src\BeauFindlay.Shared\BeauFindlay.Shared.csproj", "{0A17E6ED-1B40-4FAE-94D5-1255C3569F6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{D2F248BF-8487-4CE7-B6AA-D558587A52DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2F248BF-8487-4CE7-B6AA-D558587A52DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2F248BF-8487-4CE7-B6AA-D558587A52DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A17E6ED-1B40-4FAE-94D5-1255C3569F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A17E6ED-1B40-4FAE-94D5-1255C3569F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A17E6ED-1B40-4FAE-94D5-1255C3569F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A17E6ED-1B40-4FAE-94D5-1255C3569F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{979CCAA2-5F1B-457B-9536-02F94BC98F9F} = {3407557D-A21B-4F48-930C-6FDCE961ED2A}
 		{D2F248BF-8487-4CE7-B6AA-D558587A52DA} = {3407557D-A21B-4F48-930C-6FDCE961ED2A}
+		{0A17E6ED-1B40-4FAE-94D5-1255C3569F6E} = {3407557D-A21B-4F48-930C-6FDCE961ED2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D05FF39-4D7B-4F0D-8136-E48F71106C3A}

@@ -1,23 +1,122 @@
 ﻿@page "/contact"
+@using BeauFindlay.Shared.Contracts
 
 @inject HttpClient HttpClient
+@inject IJSRuntime JsRuntime
 
-@if (!string.IsNullOrWhiteSpace(apiResponse))
+<div class="text-center">
+    <h1 class="text-4xl">Contact</h1>
+    
+    <p class="text-lg mt-8">
+        If you think I can help with your project or you'd just like to talk tech, send me a message!
+    </p>
+</div>
+
+<div class="mx-auto max-w-xl pt-10 pb-4">
+    <EditForm Model="contactInput" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator/>
+
+        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+                <label for="name" class="block font-semibold leading-6">Name</label>
+                <div class="mt-2.5">
+                    <InputText id="name" @bind-Value="contactInput.Name" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
+                    <ValidationMessage For="() => contactInput.Name" class="text-red-600"/>
+                </div>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="email" class="block font-semibold leading-6">Email</label>
+                <div class="mt-2.5">
+                    <InputText id="email" @bind-Value="contactInput.Email" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
+                    <ValidationMessage For="() => contactInput.Email" class="text-red-600"/>
+                </div>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="message" class="block font-semibold leading-6">Message</label>
+                <div class="mt-2.5">
+                    <InputTextArea id="message" @bind-Value="contactInput.Message" rows="4" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
+                    <ValidationMessage For="() => contactInput.Message" class="text-red-600"/>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 flex items-center justify-center">
+            <Button Type="submit" IsLoading="@isSubmitting">
+                <i class="fa-solid fa-paper-plane"></i> Send
+            </Button>
+        </div>
+
+    </EditForm>
+</div>
+
+@if (isSubmitted)
 {
-    <p class="text-xl">Response from Azure Function API: @apiResponse</p>
+    <div class="m-auto max-w-xl">
+        @if (sendEmailSuccess)
+        {
+            <Alert Type="AlertType.Success" Title="Email sent successfully">
+                Thanks for getting in touch! I'll get back to you as soon as I can.
+            </Alert>
+        }
+        else
+        {
+            <Alert Type="AlertType.Error" Title="Email sending failed">
+                Looks like something went wrong trying to send that email. Please try again.
+            </Alert>
+        }
+    </div>
 }
 
-@code {
-    private string apiResponse = "";
-    
-    protected override async Task OnInitializedAsync()
-    {
-        var response = await HttpClient.GetStringAsync("/api/Function1");
+<script src="https://www.google.com/recaptcha/api.js?render=6LcvxZIpAAAAAOIP5L6kGngwDZRpwkTdMezPn06x" async
+        defer></script>
+<script src="js/recaptcha.js"></script>
 
-        if (!string.IsNullOrWhiteSpace(response))
+@code {
+    private readonly ContactInputModel contactInput = new();
+
+    private bool isSubmitting;
+    private bool isSubmitted;
+    private bool sendEmailSuccess;
+
+    private class ContactInputModel
+    {
+        [Required(ErrorMessage = "Please enter your name.")]
+        [MaxLength(50, ErrorMessage = "Please use a shorter name. 50 characters max.")]
+        public string Name { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Please enter your email.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Please include a message.")]
+        [MaxLength(500, ErrorMessage = "Please enter a shorter message. 500 characters max.")]
+        public string Message { get; set; } = string.Empty;
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        isSubmitting = true;
+        
+        var recaptchaResponse = await JsRuntime.InvokeAsync<string>("executeRecaptcha");
+
+        if (string.IsNullOrWhiteSpace(recaptchaResponse))
         {
-            apiResponse = response;
+            sendEmailSuccess = false;
         }
+        else
+        {
+            var sendEmailRequest = new SendContactEmailRequest(
+                contactInput.Name,
+                contactInput.Email,
+                contactInput.Message,
+                recaptchaResponse);
+
+            var response = await HttpClient.PostAsJsonAsync("/api/send-contact-email", sendEmailRequest);
+
+            sendEmailSuccess = response.IsSuccessStatusCode;
+        }
+        
+        isSubmitting = false;
+        isSubmitted = true;
     }
 
 }
