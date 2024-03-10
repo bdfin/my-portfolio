@@ -15,4 +15,8 @@
     <ProjectReference Include="..\BeauFindlay.Shared\BeauFindlay.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\AnchorNavigation\AnchorNavigation.razor" />
+  </ItemGroup>
+
 </Project>

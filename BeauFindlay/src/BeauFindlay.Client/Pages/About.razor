@@ -1,0 +1,74 @@
+﻿@page "/About"
+
+@inject IJSRuntime JSRuntime
+
+@if (!hasPreviouslyRendered)
+{
+    <h1 class="text-4xl">
+        <Typewriter Text="This app"/>
+    </h1>
+}
+else
+{
+    <h1 class="text-4xl">This app<span class="blinking-cursor">|</span></h1>
+}
+
+<p class="py-4 text-xl">Below is a brief outline of how this app is made and what technologies are used. If you'd like to dive straight in then full project is available on my <a href="https://github.com/bdfin/my-portfolio" target="_blank" class="underline underline-offset-2">GitHub</a>.</p>
+
+<section class="py-6" id="@FrontEndSection">
+    <h2 class="text-2xl">Front-end</h2>
+    
+    <p class="py-4">I wanted to create a decent, modern client-side experience for this app and given my <em class="text-xs">(very...)</em> limited front-end expertise I decided to choose <a href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" target="_blank" class="underline underline-offset-2">.NET Blazor Webassembly</a>. Blazor is Microsoft's take on component-based SPAs (single page applications) and offers us back-end focussed devs a way of producing decent client experiences without needing to dive into another front-end specific technology.</p>
+    
+    <p class="py-4">Blazor traditionally came in two flavours, server and webassembly with an additional third option (Blazor Web App) recently released with .NET 8 which is an amalgamation of both. <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-8.0#blazor-server" target="_blank" class="underline underline-offset-2">Blazor Server</a> initially generates content on the server and utilises web-sockets to communicate dynamic UI updates with the client without requiring a page load, whereas <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-8.0#blazor-webassembly" target="_blank" class="underline underline-offset-2">Blazor Webassembly</a> downloads the entire app to the client browser on first load alongside a light-weight .NET run-time to execute code directly on the browsers UI thread.</p>
+    
+    <p class="py-4">As Blazor server requires a dedicated server to host the application, I chose Blazor webassembly to enable me to host this app for free using an <a href="https://azure.microsoft.com/en-gb/products/app-service/static" target="_blank" class="underline underline-offset-2">Azure Static Web App</a>. You can read more about this in the <a @onclick="() => ScrollToElementAsync(HostingSection)" class="underline underline-offset-2 cursor-pointer">hosting</a> section.</p>
+</section>
+
+<section class="py-6" id="@BackEndSection">
+    <h2 class="text-2xl pb-4">Back-end</h2>
+    <p class="my-4">As the </p>
+</section>
+
+
+<section class="py-6" id="@HostingSection">
+    <h2 class="text-2xl pb-4">Hosting</h2>
+    <p></p>
+</section>
+
+<AnchorNavigation />
+
+@code {
+    private const string ComponentKey  = "ComponentRendered_About";
+    private const string FrontEndSection = "front-end";
+    private const string BackEndSection = "back-end";
+    private const string HostingSection = "hosting";
+    
+    private bool hasPreviouslyRendered;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var renderedBeforeAsString = await JSRuntime.InvokeAsync<string>("localStorage.getItem", ComponentKey);
+
+            var previousValue = hasPreviouslyRendered;
+            hasPreviouslyRendered = !string.IsNullOrEmpty(renderedBeforeAsString) && bool.Parse(renderedBeforeAsString);
+
+            if (!hasPreviouslyRendered)
+            {
+                await JSRuntime.InvokeVoidAsync("localStorage.setItem", ComponentKey, "true");
+            }
+            
+            if (previousValue != hasPreviouslyRendered)
+            {
+                StateHasChanged();
+            }
+        }
+    }
+
+    private async Task ScrollToElementAsync(string elementId)
+    {
+        await JSRuntime.InvokeVoidAsync("scrollToElement", elementId);
+    }
+}
