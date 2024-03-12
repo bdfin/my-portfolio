@@ -1,5 +1,4 @@
 ﻿@page "/contact"
-@using BeauFindlay.Shared.Contracts
 
 @inject HttpClient HttpClient
 @inject IJSRuntime JSRuntime
@@ -40,7 +39,7 @@
             </div>
         </div>
         <div class="mt-4">
-            <small>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" class="underline underline-offset-2">Privacy Policy</a> and <a href="https://policies.google.com/terms" class="underline underline-offset-2">Terms of Service</a> apply.</small>
+            <small>This site is protected by reCAPTCHA and the Google <Anchor Href="https://policies.google.com/privacy" Target="_blank">Privacy Policy</Anchor> and <Anchor Href="https://policies.google.com/terms" Target="_blank">Terms of Service</Anchor> apply.</small>
         </div>
         <div class="mt-4 flex items-center justify-center">
             <Button Type="submit" IsLoading="@isSubmitting">

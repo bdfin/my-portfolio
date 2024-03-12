@@ -1,0 +1,18 @@
+﻿<a href="@Href"
+   target="@Target"
+   class="underline underline-offset-2">
+   @ChildContent
+</a>
+
+@code {
+
+    [Parameter]
+    public string Href { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Target { get; set; } = "_blank";
+    
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}
