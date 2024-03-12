@@ -666,6 +666,10 @@ video {
   max-width: 36rem;
 }
 
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -809,8 +813,8 @@ video {
   padding-bottom: 1rem;
 }
 
-.pt-10 {
-  padding-top: 2.5rem;
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .text-center {
@@ -965,7 +969,7 @@ video {
 }
 
 .fade-in {
-  animation: fadeInAnimation ease 6s;
+  animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -978,6 +982,23 @@ video {
   to {
     opacity: 1;
   }
+}
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+body::-webkit-scrollbar {
+  width: 14px;
+}
+
+body::-webkit-scrollbar-track {
+  background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: black;
+  border: 1px solid white;
 }
 
 .placeholder\:text-gray-400::-moz-placeholder {

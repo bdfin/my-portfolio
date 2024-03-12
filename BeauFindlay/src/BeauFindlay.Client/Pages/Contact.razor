@@ -1,8 +1,7 @@
 ﻿@page "/contact"
-@using BeauFindlay.Shared.Contracts
 
 @inject HttpClient HttpClient
-@inject IJSRuntime JsRuntime
+@inject IJSRuntime JSRuntime
 
 <div class="text-center">
     <h1 class="text-4xl">Contact</h1>
@@ -12,7 +11,7 @@
     </p>
 </div>
 
-<div class="mx-auto max-w-xl pt-10 pb-4">
+<div class="mx-auto max-w-xl pt-8 pb-4">
     <EditForm Model="contactInput" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator/>
 
@@ -20,14 +19,14 @@
             <div class="sm:col-span-2">
                 <label for="name" class="block font-semibold leading-6">Name</label>
                 <div class="mt-2.5">
-                    <InputText id="name" @bind-Value="contactInput.Name" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
+                    <InputText id="name" @bind-Value="contactInput.Name" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600" autocomplete="given-name"/>
                     <ValidationMessage For="() => contactInput.Name" class="text-red-600"/>
                 </div>
             </div>
             <div class="sm:col-span-2">
                 <label for="email" class="block font-semibold leading-6">Email</label>
                 <div class="mt-2.5">
-                    <InputText id="email" @bind-Value="contactInput.Email" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
+                    <InputText id="email" @bind-Value="contactInput.Email" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600" autocomplete="email"/>
                     <ValidationMessage For="() => contactInput.Email" class="text-red-600"/>
                 </div>
             </div>
@@ -39,7 +38,10 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 flex items-center justify-center">
+        <div class="mt-4">
+            <small>This site is protected by reCAPTCHA and the Google <Anchor Href="https://policies.google.com/privacy" Target="_blank">Privacy Policy</Anchor> and <Anchor Href="https://policies.google.com/terms" Target="_blank">Terms of Service</Anchor> apply.</small>
+        </div>
+        <div class="mt-4 flex items-center justify-center">
             <Button Type="submit" IsLoading="@isSubmitting">
                 <i class="fa-solid fa-paper-plane"></i> Send
             </Button>
@@ -65,10 +67,6 @@
         }
     </div>
 }
-
-<script src="https://www.google.com/recaptcha/api.js?render=6LcvxZIpAAAAAOIP5L6kGngwDZRpwkTdMezPn06x" async
-        defer></script>
-<script src="js/recaptcha.js"></script>
 
 @code {
     private readonly ContactInputModel contactInput = new();
@@ -96,7 +94,7 @@
     {
         isSubmitting = true;
         
-        var recaptchaResponse = await JsRuntime.InvokeAsync<string>("executeRecaptcha");
+        var recaptchaResponse = await JSRuntime.InvokeAsync<string>("executeRecaptcha");
 
         if (string.IsNullOrWhiteSpace(recaptchaResponse))
         {
