@@ -2,7 +2,7 @@
 @using BeauFindlay.Shared.Contracts
 
 @inject HttpClient HttpClient
-@inject IJSRuntime JsRuntime
+@inject IJSRuntime JSRuntime
 
 <div class="text-center">
     <h1 class="text-4xl">Contact</h1>
@@ -12,7 +12,7 @@
     </p>
 </div>
 
-<div class="mx-auto max-w-xl pt-10 pb-4">
+<div class="mx-auto max-w-xl pt-8 pb-4">
     <EditForm Model="contactInput" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator/>
 
@@ -39,7 +39,10 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 flex items-center justify-center">
+        <div class="mt-4">
+            <small>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" class="underline underline-offset-2">Privacy Policy</a> and <a href="https://policies.google.com/terms" class="underline underline-offset-2">Terms of Service</a> apply.</small>
+        </div>
+        <div class="mt-4 flex items-center justify-center">
             <Button Type="submit" IsLoading="@isSubmitting">
                 <i class="fa-solid fa-paper-plane"></i> Send
             </Button>
@@ -65,10 +68,6 @@
         }
     </div>
 }
-
-<script src="https://www.google.com/recaptcha/api.js?render=6LcvxZIpAAAAAOIP5L6kGngwDZRpwkTdMezPn06x" async
-        defer></script>
-<script src="js/recaptcha.js"></script>
 
 @code {
     private readonly ContactInputModel contactInput = new();
@@ -96,7 +95,7 @@
     {
         isSubmitting = true;
         
-        var recaptchaResponse = await JsRuntime.InvokeAsync<string>("executeRecaptcha");
+        var recaptchaResponse = await JSRuntime.InvokeAsync<string>("executeRecaptcha");
 
         if (string.IsNullOrWhiteSpace(recaptchaResponse))
         {
