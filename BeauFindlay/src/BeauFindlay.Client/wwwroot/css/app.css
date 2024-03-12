@@ -26,3 +26,15 @@
     visibility: hidden !important;
 }
 
+body::-webkit-scrollbar {
+    width: 14px;
+}
+
+body::-webkit-scrollbar-track {
+    background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 1px solid white;
+}

@@ -984,6 +984,19 @@ video {
   visibility: hidden !important;
 }
 
+body::-webkit-scrollbar {
+  width: 14px;
+}
+
+body::-webkit-scrollbar-track {
+  background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: black;
+  border: 1px solid white;
+}
+
 .placeholder\:text-gray-400::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -1095,4 +1108,3 @@ video {
     color: rgb(75 85 99 / var(--tw-text-opacity));
   }
 }
-
