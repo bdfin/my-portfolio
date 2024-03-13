@@ -4,14 +4,7 @@
 
 <PageTitle>About - Beau Findlay</PageTitle>
 
-@if (comingSoon)
-{
-    <div class="text-center">
-        <h1 class="text-4xl">Coming soon...</h1>
-    </div>
-}
-else
-{
+<div class="text-center pb-8">
     @if (!hasPreviouslyRendered)
     {
         <h1 class="text-4xl">
@@ -20,32 +13,48 @@ else
     }
     else
     {
-        <h1 class="text-4xl">This app<span class="blinking-cursor">|</span></h1>
+        <h1 class="text-4xl">This app</h1>
     }
+</div>
 
-    <p class="py-4 text-xl">Below is a brief outline of how this app is made and what technologies are used. If you'd like to dive straight in then full project is available on my <Anchor Href="https://github.com/bdfin/my-portfolio">GitHub</Anchor>.</p>
+<p class="py-4 text-xl">Below is an overview of how this simple app is made and what technologies are used. If you'd like to dive straight in, the full project is available on my <Anchor Href="https://github.com/bdfin/my-portfolio">GitHub</Anchor>.</p>
 
-    <section class="py-6" id="@FrontEndSection">
-        <h2 class="text-2xl">Front-end</h2>
+<p class="pt-4 pb-8 text-xl">I'm planning to integrate a simple blog as part of this app that will dive into more specific implementation details so check back soon for more!</p>
 
-        <p class="py-4">I wanted to create a decent, modern client-side experience for this app and given my <em class="text-xs">(very...)</em> limited front-end expertise I decided to choose <Anchor Href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor">.NET Blazor Webassembly</Anchor>. Blazor is Microsoft's take on component-based SPAs (single page applications) and offers us back-end focussed devs a way of producing decent client experiences without needing to dive into another front-end specific technology.</p>
+<section class="py-12 text-lg" id="@FrontEndSection">
+    <h2 class="text-3xl pb-4">Front-end: <img src="images/blazor-logo.png" class="inline w-auto h-8" alt="blazor logo"/> .NET Blazor WASM</h2>
 
-        <p class="py-4">Blazor traditionally came in two flavours, server and webassembly with an additional third option (Blazor Web App) recently released with .NET 8 which is an amalgamation of both. <Anchor Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-8.0#blazor-server">Blazor Server</Anchor> initially generates content on the server and utilises web-sockets to communicate dynamic UI updates with the client without requiring a page load, whereas <Anchor Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-8.0#blazor-webassembly">Blazor Webassembly</Anchor> downloads the entire app to the client browser on first load alongside a light-weight .NET run-time to execute code directly on the browsers UI thread.</p>
+    <p class="py-4">I wanted to create a decent, modern client-side experience for this app and given my <em class="text-xs">(very...)</em> limited front-end expertise I decided to choose <Anchor Href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor">.NET Blazor Webassembly</Anchor>. Blazor is Microsoft's take on component-based SPAs (single page applications) and offers us back-end focussed devs a way of producing decent client experiences without needing to dive into another front-end specific technology.</p>
 
-        <p class="py-4">As Blazor server requires a dedicated server to host the application, I chose Blazor webassembly to enable me to host this app for free using an <Anchor Href="https://azure.microsoft.com/en-gb/products/app-service/static">Azure Static Web App</Anchor>. You can read more about this in the <a @onclick="() => ScrollToElementAsync(HostingSection)" class="underline underline-offset-2 cursor-pointer">hosting</a> section.</p>
-    </section>
+    <p class="py-4">Blazor traditionally came in two flavours, server and webassembly with an additional third option (Blazor Web App) recently released with .NET 8 which can offer the functionality of both, alongside traditional SSR (server-side rendering). <Anchor Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-8.0#blazor-server">Blazor Server</Anchor> initially generates content on the server and utilises web-sockets to communicate dynamic UI updates with the client without requiring a page load, whereas <Anchor Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-8.0#blazor-webassembly">Blazor Webassembly</Anchor> downloads the entire app to the client browser on first load alongside a light-weight .NET run-time to execute code directly on the browsers UI thread.</p>
 
-    <section class="py-6" id="@BackEndSection">
-        <h2 class="text-2xl pb-4">Back-end</h2>
-        <p class="my-4">As the </p>
-    </section>
+    <p class="py-4">As Blazor server requires a dedicated server to host the application, I chose the webassembly model to enable free hosting using an <Anchor Href="https://azure.microsoft.com/en-gb/products/app-service/static">Azure Static Web App</Anchor>. You can read more about this in the <a @onclick="() => ScrollToElementAsync(HostingSection)" class="underline underline-offset-2 cursor-pointer">hosting</a> section.</p>
+    
+    <p class="py-4">This app is styled using a cool CSS framework called <Anchor Href="https://tailwindcss.com/">TailwindCSS</Anchor>. <Anchor Href="https://postcss.org/">PostCSS</Anchor> is used alongside Tailwind to generate a lightweight stylesheet based only on the parts of the framework that are used, as oppose to including a everything the framework offers.</p>
+</section>
+
+<section class="py-12 text-lg" id="@BackEndSection">
+    <h2 class="text-3xl pb-4">Back-end: <img src="images/azure-function-logo.png" class="inline w-auto h-8" alt="azure function app logo"/>.NET Azure Functions API</h2>
+    
+    <p class="py-4">There is a very minimal API used as the back-end of this app to allow users to contact me directly via the <NavLink href="/contact" class="underline underline-offset-2">contact</NavLink> page. This will be expanded to serve the technical blog I'm building as a new feature that will be available soon.</p>
+    
+    <p class="pt-4 pb-2">The contact API endpoint currently:</p>
+    <ul class="list-disc pl-8 pb-4">
+        <li>Validates a <Anchor Href="https://www.google.com/recaptcha/about/">Google Recaptcha</Anchor> token to protect against fraudulent submissions.</li>
+        <li>Builds a HTML email from the information provided in the form.</li>
+        <li>Sends an email directly to my inbox using the <Anchor Href="https://sendgrid.com/en-us">SendGrid</Anchor> API.</li>
+    </ul>
+    
+    <p class="py-4">The API is written in .NET 8 using <Anchor Href="https://azure.microsoft.com/en-gb/products/functions">Azure Serverless Functions</Anchor> with HTTP triggers to act as API endpoints. For larger scale projects I would almost always opt for a fully-featured <Anchor Href="https://dotnet.microsoft.com/en-us/apps/aspnet/apis">Web API</Anchor>, however Azure Functions provide automatic elastic scaling with consumption-based billing and a generous free-tier, making them perfect for smaller projects like this.</p>
+    
+</section>
 
 
-    <section class="py-6" id="@HostingSection">
-        <h2 class="text-2xl pb-4">Hosting</h2>
-        <p></p>
-    </section>
-}
+<section class="py-12" id="@HostingSection">
+    <h2 class="text-3xl pb-4">Hosting: <img src="images/azure-static-web-app-logo.png" class="inline w-auto h-8" alt="azure static web app logo"/> Microsoft Azure Static Web App</h2>
+    
+    <p class="py-4"></p>
+</section>
 
 
 <AnchorNavigation/>
