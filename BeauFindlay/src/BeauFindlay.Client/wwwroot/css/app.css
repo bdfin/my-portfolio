@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Cascadia Code";
+    src: url("../fonts/CascadiaCode.woff2");
+}
+
 @keyframes blink {
     from, to { opacity: 1 }
     50% { opacity: 0 }
