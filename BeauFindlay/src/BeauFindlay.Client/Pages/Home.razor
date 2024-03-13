@@ -1,7 +1,5 @@
 ﻿@page "/"
 
-@implements IDisposable
-
 @inject IJSRuntime JSRuntime
 
 <PageTitle>Home - Beau Findlay</PageTitle>
@@ -50,8 +48,6 @@ else
     {
         if (firstRender)
         {
-            Typewriter.OnAllTypingCompleted += HandleTypingCompleted;
-            
             var renderedBeforeAsString = await JSRuntime.InvokeAsync<string>("localStorage.getItem", ComponentKey);
 
             var previousValue = hasPreviouslyRendered;
@@ -67,16 +63,6 @@ else
                 StateHasChanged();
             }
         }
-    }
-
-    private static void HandleTypingCompleted()
-    {
-        Console.WriteLine("Typewriter finished typing.");
-    }
-
-    public void Dispose()
-    {
-        Typewriter.OnAllTypingCompleted -= HandleTypingCompleted;
     }
 
 }
