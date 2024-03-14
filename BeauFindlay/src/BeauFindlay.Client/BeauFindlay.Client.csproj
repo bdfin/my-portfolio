@@ -19,4 +19,8 @@
     <_ContentIncludedByDefault Remove="Components\AnchorNavigation\AnchorNavigation.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="wwwroot\sitemap.txt" />
+  </ItemGroup>
+
 </Project>
