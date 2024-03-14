@@ -4,5 +4,9 @@
     "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.4.1"
+  },
+  "scripts": {
+    "build": "echo Skipping Node.js build...",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
