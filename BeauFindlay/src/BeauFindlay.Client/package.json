@@ -6,7 +6,7 @@
     "tailwindcss": "^3.4.1"
   },
   "scripts": {
-    "build": "echo Skipping Node.js build...",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo Skipping build",
+    "build:azure": "echo Skipping Azure-specific build"
   }
 }
