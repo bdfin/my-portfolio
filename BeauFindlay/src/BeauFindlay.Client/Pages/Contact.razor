@@ -7,54 +7,56 @@
 
 <div class="text-center">
     <h1 class="text-4xl">Contact</h1>
-    
+
     <p class="text-lg mt-8">
         If you think I can help with your project or you'd just like to talk tech, send me a message!
     </p>
 </div>
 
-<div class="mx-auto max-w-xl pt-8 pb-4">
-    <EditForm Model="contactInput" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator/>
-
-        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div class="sm:col-span-2">
-                <label for="name" class="block font-semibold leading-6">Name</label>
-                <div class="mt-2.5">
-                    <InputText id="name" @bind-Value="contactInput.Name" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600" autocomplete="given-name"/>
-                    <ValidationMessage For="() => contactInput.Name" class="text-red-600"/>
-                </div>
-            </div>
-            <div class="sm:col-span-2">
-                <label for="email" class="block font-semibold leading-6">Email</label>
-                <div class="mt-2.5">
-                    <InputText id="email" @bind-Value="contactInput.Email" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600" autocomplete="email"/>
-                    <ValidationMessage For="() => contactInput.Email" class="text-red-600"/>
-                </div>
-            </div>
-            <div class="sm:col-span-2">
-                <label for="message" class="block font-semibold leading-6">Message</label>
-                <div class="mt-2.5">
-                    <InputTextArea id="message" @bind-Value="contactInput.Message" rows="4" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
-                    <ValidationMessage For="() => contactInput.Message" class="text-red-600"/>
-                </div>
-            </div>
-        </div>
-        <div class="mt-4">
-            <small>This site is protected by reCAPTCHA and the Google <Anchor Href="https://policies.google.com/privacy" Target="_blank">Privacy Policy</Anchor> and <Anchor Href="https://policies.google.com/terms" Target="_blank">Terms of Service</Anchor> apply.</small>
-        </div>
-        <div class="mt-4 flex items-center justify-center">
-            <Button Type="submit" IsLoading="@isSubmitting">
-                <i class="fa-solid fa-paper-plane"></i> Send
-            </Button>
-        </div>
-
-    </EditForm>
-</div>
-
-@if (isSubmitted)
+@if (!isSubmitted)
 {
-    <div class="m-auto max-w-xl">
+    <div class="mx-auto max-w-xl pt-8 pb-4">
+        <EditForm Model="contactInput" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator/>
+
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div class="sm:col-span-2">
+                    <label for="name" class="block font-semibold leading-6">Name</label>
+                    <div class="mt-2.5">
+                        <InputText id="name" @bind-Value="contactInput.Name" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600" autocomplete="given-name"/>
+                        <ValidationMessage For="() => contactInput.Name" class="text-red-600"/>
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="email" class="block font-semibold leading-6">Email</label>
+                    <div class="mt-2.5">
+                        <InputText id="email" @bind-Value="contactInput.Email" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600" autocomplete="email"/>
+                        <ValidationMessage For="() => contactInput.Email" class="text-red-600"/>
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="message" class="block font-semibold leading-6">Message</label>
+                    <div class="mt-2.5">
+                        <InputTextArea id="message" @bind-Value="contactInput.Message" rows="4" class="block w-full text-lg border-0 px-3.5 py-2 bg-black shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600"/>
+                        <ValidationMessage For="() => contactInput.Message" class="text-red-600"/>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <small>This site is protected by reCAPTCHA and the Google <Anchor Href="https://policies.google.com/privacy" Target="_blank">Privacy Policy</Anchor> and <Anchor Href="https://policies.google.com/terms" Target="_blank">Terms of Service</Anchor> apply.</small>
+            </div>
+            <div class="mt-4 flex items-center justify-center">
+                <Button Type="submit" IsLoading="@isSubmitting">
+                    <i class="fa-solid fa-paper-plane"></i> Send
+                </Button>
+            </div>
+
+        </EditForm>
+    </div>
+}
+else
+{
+    <div class="m-auto max-w-xl py-14">
         @if (sendEmailSuccess)
         {
             <Alert Type="AlertType.Success" Title="Email sent successfully">
@@ -95,7 +97,7 @@
     private async Task HandleValidSubmit()
     {
         isSubmitting = true;
-        
+
         var recaptchaResponse = await JSRuntime.InvokeAsync<string>("executeRecaptcha");
 
         if (string.IsNullOrWhiteSpace(recaptchaResponse))
@@ -114,7 +116,7 @@
 
             sendEmailSuccess = response.IsSuccessStatusCode;
         }
-        
+
         isSubmitting = false;
         isSubmitted = true;
     }
