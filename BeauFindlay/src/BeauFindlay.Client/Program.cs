@@ -20,6 +20,4 @@ else
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiBase) });
 
-builder.Services.AddSingleton<ITypewriterNotificationService, TypewriterNotificationService>();
-
 await builder.Build().RunAsync();
