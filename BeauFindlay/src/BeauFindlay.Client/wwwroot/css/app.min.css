@@ -1130,6 +1130,15 @@ body::-webkit-scrollbar-thumb {
     padding-left: 3rem;
     padding-right: 3rem;
   }
+
+  .md\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
 }
 
 @media (min-width: 1024px) {

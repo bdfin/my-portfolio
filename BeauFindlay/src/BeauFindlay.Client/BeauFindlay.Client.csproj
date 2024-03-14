@@ -15,12 +15,4 @@
     <ProjectReference Include="..\BeauFindlay.Shared\BeauFindlay.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\AnchorNavigation\AnchorNavigation.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\sitemap.txt" />
-  </ItemGroup>
-
 </Project>

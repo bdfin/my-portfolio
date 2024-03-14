@@ -5,16 +5,7 @@
 <PageTitle>About - Beau Findlay</PageTitle>
 
 <div class="text-center pb-4" id="@TopSection">
-    @if (!hasPreviouslyRendered)
-    {
-        <h1 class="text-4xl">
-            <Typewriter Text="This app"/>
-        </h1>
-    }
-    else
-    {
         <h1 class="text-4xl">This app</h1>
-    }
 </div>
 
 <nav class="flex items-center justify-center py-8 space-x-8">
@@ -73,34 +64,10 @@
 <AnchorNavigation/>
 
 @code {
-    private const string ComponentKey = "ComponentRendered_About";
     private const string FrontEndSection = "front-end";
     private const string BackEndSection = "back-end";
     private const string HostingSection = "hosting";
     private const string TopSection = "top";
-
-    private bool hasPreviouslyRendered;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var renderedBeforeAsString = await JSRuntime.InvokeAsync<string>("localStorage.getItem", ComponentKey);
-
-            var previousValue = hasPreviouslyRendered;
-            hasPreviouslyRendered = !string.IsNullOrEmpty(renderedBeforeAsString) && bool.Parse(renderedBeforeAsString);
-
-            if (!hasPreviouslyRendered)
-            {
-                await JSRuntime.InvokeVoidAsync("localStorage.setItem", ComponentKey, "true");
-            }
-
-            if (previousValue != hasPreviouslyRendered)
-            {
-                StateHasChanged();
-            }
-        }
-    }
 
     private async Task ScrollToElementAsync(string elementId)
     {
