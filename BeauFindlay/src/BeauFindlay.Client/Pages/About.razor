@@ -4,7 +4,7 @@
 
 <PageTitle>About - Beau Findlay</PageTitle>
 
-<div class="text-center pb-8">
+<div class="text-center pb-4" id="@TopSection">
     @if (!hasPreviouslyRendered)
     {
         <h1 class="text-4xl">
@@ -16,6 +16,12 @@
         <h1 class="text-4xl">This app</h1>
     }
 </div>
+
+<nav class="flex items-center justify-center py-8 space-x-8">
+    <a @onclick="() => ScrollToElementAsync(FrontEndSection)" class="underline underline-offset-2 cursor-pointer">Front-end</a>
+    <a @onclick="() => ScrollToElementAsync(BackEndSection)" class="underline underline-offset-2 cursor-pointer">Back-end</a>
+    <a @onclick="() => ScrollToElementAsync(HostingSection)" class="underline underline-offset-2 cursor-pointer">Hosting</a>
+</nav>
 
 <p class="py-4 text-xl">Below is an overview of how this simple app is made and what technologies are used. If you'd like to dive straight in, the full project is available on my <Anchor Href="https://github.com/bdfin/my-portfolio">GitHub</Anchor>.</p>
 
@@ -50,12 +56,19 @@
 </section>
 
 
-<section class="py-12" id="@HostingSection">
+<section class="py-12 text-lg" id="@HostingSection">
     <h2 class="text-3xl pb-4">Hosting: <img src="images/azure-static-web-app-logo.png" class="inline w-auto h-6" alt="azure static web app logo"/> Microsoft Azure Static Web App</h2>
     
-    <p class="py-4"></p>
+    <p class="py-4">The goal of this project was to learn some new technologies and host the app as cheaply as possible. With this in mind I decided to go with a <Anchor Href="https://azure.microsoft.com/en-gb/products/app-service/static">Static Web App</Anchor> hosted on Microsoft Azure. Static Web Apps offer global distribution of static assets (the Blazor Webassembly app in this case) and offer integrated hosting for Azure Function App APIs.</p>
+    
+    <p class="py-4">Another cool feature of Static Web Apps is Azure's integration with GitHub actions to deploy both the client and server simultaneously and provide automatically deployed staging environments for pull-requests opened to the main branch. This made testing deployed changes much easier and cheaper than deploying an isolated testing/GA environment before releasing to the live version of the app.</p>
+    
+    <p class="py-4">Using Static Web Apps on Azure has meant that I have been able to build, deploy and serve this site and API completely free (with the exception of the domain name). The next thing on the roadmap is building a simple blog using an <Anchor Href="https://azure.microsoft.com/en-gb/products/azure-sql/database">Azure SQL database</Anchor> where I'll document the full process of writing and deploying this app so check back again soon.</p>
 </section>
 
+<nav class="flex items-center justify-center pb-8">
+    <a @onclick="() => ScrollToElementAsync(TopSection)" class="underline underline-offset-2 cursor-pointer">Top</a>
+</nav>
 
 <AnchorNavigation/>
 
@@ -64,9 +77,9 @@
     private const string FrontEndSection = "front-end";
     private const string BackEndSection = "back-end";
     private const string HostingSection = "hosting";
+    private const string TopSection = "top";
 
     private bool hasPreviouslyRendered;
-    private bool comingSoon = true;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
