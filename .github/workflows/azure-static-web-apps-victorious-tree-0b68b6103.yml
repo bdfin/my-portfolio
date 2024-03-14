@@ -19,6 +19,25 @@ jobs:
         with:
           submodules: true
           lfs: false
+          
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x' # Adjust to match your project's required SDK version
+
+      # Build and Publish Blazor WebAssembly App
+      - name: Build and Publish Blazor WebAssembly App
+        run: |
+          dotnet restore ./BeauFindlay/src/BeauFindlay.Client
+          dotnet publish ./BeauFindlay/src/BeauFindlay.Client -c Release -o ./published/wwwroot
+          
+      # Build and Publish .NET API
+      - name: Build and Publish .NET API
+        if: always() && success() # Adjust condition based on your needs
+        run: |
+          dotnet restore ./BeauFindlay/src/BeauFindlay.Api
+          dotnet publish ./BeauFindlay/src/BeauFindlay.Api -c Release -o ./published/api
+          
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -28,9 +47,9 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/BeauFindlay/src/BeauFindlay.Client" # App source code path
-          api_location: "/BeauFindlay/src/BeauFindlay.Api" # Api source code path - optional
-          output_location: "wwwroot" # Built app content directory - optional
+          app_location: "/published/wwwroot" # App source code path
+          api_location: "/published/api" # Api source code path - optional
+          output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
