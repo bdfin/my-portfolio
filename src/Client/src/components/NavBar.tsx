@@ -1,9 +1,10 @@
 import { Dialog, Popover } from "@headlessui/react";
 import { useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.webp";
 import SocialIcons from "./SocialIcons";
+import NavLink from "./NavLink";
 
 export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,12 +32,8 @@ export default function NavBar() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <NavLink to="/contact" className="text-sm font-semibold leading-6">
-            Contact
-          </NavLink>
-          <NavLink to="/about" className="text-sm font-semibold leading-6">
-            This App
-          </NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/about">This App</NavLink>
         </Popover.Group>
       </nav>
       <Dialog
@@ -48,10 +45,10 @@ export default function NavBar() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 bg-black w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 text-white sm:border-l-2">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Beau Findlay</span>
               <img className="h-16 w-auto" src={logo} alt="Logo" />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5"

@@ -1,7 +1,11 @@
 interface Props {
   children: string;
+  className?: string | null;
 }
 
-export default function Title({ children }: Props) {
-  return <h1 className="text-4xl">{children}</h1>;
+export default function Title({ children, className }: Props) {
+  const defaultStyles = "text-4xl";
+  const styles = className ? `${defaultStyles} ${className}` : defaultStyles;
+
+  return <h1 className={styles}>{children}</h1>;
 }
