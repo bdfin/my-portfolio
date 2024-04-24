@@ -1,7 +1,7 @@
 import { Dialog, Popover } from "@headlessui/react";
 import { useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.webp";
 import SocialIcons from "./SocialIcons";
 
@@ -15,10 +15,10 @@ export default function NavBar() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Beau Findlay</span>
             <img className="h-16 w-auto" src={logo} alt="Logo" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
