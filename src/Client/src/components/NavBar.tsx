@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.webp";
-
+import SocialIcons from "./SocialIcons";
 
 export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -76,6 +76,9 @@ export default function NavBar() {
                 >
                   This App
                 </NavLink>
+              </div>
+              <div className="flex justify-center items-center py-8">
+                <SocialIcons size={24} />
               </div>
             </div>
           </div>
