@@ -7,14 +7,14 @@ interface Props {
 }
 
 export default function NavLink({ children, to, className }: Props) {
-  const defaultStyles = "text-sm font-semibold leading-6";
+  const defaultStyles = "text-base font-semibold leading-6 hover:text-gray-300";
   const styles = className ? className : defaultStyles;
 
   return (
     <ReactNavLink
       to={to}
       className={({ isActive }) =>
-        isActive ? `${styles} underline underline-offset-2` : styles
+        isActive ? `${styles} underline underline-offset-4` : styles
       }
     >
       {children}

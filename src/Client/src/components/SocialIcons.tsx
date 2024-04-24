@@ -29,7 +29,7 @@ export default function SocialIcons({ size = 20 }: Props) {
         <a
           key={socialIcon.name}
           href={socialIcon.href}
-          className="text-slate-200 hover:text-slate-500"
+          className="text-gray-100 hover:text-gray-300"
         >
           <span className="sr-only">{socialIcon.name}</span>
           {socialIcon.icon}
