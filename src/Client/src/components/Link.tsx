@@ -1,16 +1,16 @@
 interface Props {
   children: string;
-  href: string;
+  href?: string;
   target?: "_blank" | "";
+  className?: string | null;
 }
 
-export default function Link({ children, href, target }: Props) {
+export default function Link({ children, href, target, className }: Props) {
+  const defaultStyles = "underline underline-offset-2 hover:underline-offset-4";
+  const styles = className ? `${defaultStyles} ${className}` : defaultStyles;
+
   return (
-    <a
-      href={href}
-      target={target}
-      className="underline underline-offset-2 hover:underline-offset-4"
-    >
+    <a href={href} target={target} className={styles}>
       {children}
     </a>
   );
