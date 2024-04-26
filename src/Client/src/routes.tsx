@@ -1,8 +1,10 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./pages/Layout";
-import HomePage from "./pages/HomePage";
-import ContactPage from "./pages/ContactPage";
-import AboutPage from "./pages/AboutPage";
+
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const ContactPage = React.lazy(() => import("./pages/ContactPage"));
+const AboutPage = React.lazy(() => import("./pages/AboutPage"));
 
 const router = createBrowserRouter([
   {

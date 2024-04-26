@@ -16,11 +16,6 @@ export default function AboutPage() {
         </AnchorLink>
         .
       </Text>
-      <Text>
-        I'm planning to integrate a simple blog as part of this app that will
-        dive into more specific implementation details so check back soon for
-        more!
-      </Text>
       <AboutTabs />
     </>
   );
