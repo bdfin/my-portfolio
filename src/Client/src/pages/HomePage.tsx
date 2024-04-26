@@ -1,4 +1,4 @@
-import Link from "../components/Link";
+import AnchorLink from "../components/AnchorLink";
 import Subtitle from "../components/Subtitle";
 import Text from "../components/Text";
 import Title from "../components/Title";
@@ -19,7 +19,7 @@ export default function HomePage() {
       <Text>
         I've worked with businesses at all sizes and stages and I'm currently
         heading up the tech as CTO at a cool startup called{" "}
-        <Link href="https://unhurdmusic.com">un:hurd music</Link>.
+        <AnchorLink href="https://unhurdmusic.com">un:hurd music</AnchorLink>.
       </Text>
     </>
   );

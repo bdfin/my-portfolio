@@ -1,5 +1,5 @@
 import { FaRegPaperPlane } from "react-icons/fa6";
-import Link from "./Link";
+import AnchorLink from "./AnchorLink";
 import TextInput from "./TextInput";
 import TextAreaInput from "./TextAreaInput";
 import Button from "./Button";
@@ -37,13 +37,19 @@ export default function ContactForm() {
         <div className="mt-4">
           <small>
             This site is protected by reCAPTCHA and the Google{" "}
-            <Link href="https://policies.google.com/privacy" target="_blank">
+            <AnchorLink
+              href="https://policies.google.com/privacy"
+              target="_blank"
+            >
               Privacy Policy
-            </Link>{" "}
+            </AnchorLink>{" "}
             and{" "}
-            <Link href="https://policies.google.com/terms" target="_blank">
+            <AnchorLink
+              href="https://policies.google.com/terms"
+              target="_blank"
+            >
               Terms of Service
-            </Link>{" "}
+            </AnchorLink>{" "}
             apply.
           </small>
         </div>

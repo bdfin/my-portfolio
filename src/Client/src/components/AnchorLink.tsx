@@ -7,7 +7,12 @@ interface Props {
   className?: string | null;
 }
 
-export default function Link({ children, href, target, className }: Props) {
+export default function AnchorLink({
+  children,
+  href,
+  target,
+  className,
+}: Props) {
   const defaultStyles = "underline underline-offset-2 hover:underline-offset-4";
   const styles = buildClassNames(className ? className : "", defaultStyles);
 
