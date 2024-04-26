@@ -11,13 +11,13 @@ export default function AboutTabs() {
     <Tab.Group as="div" className="mt-4">
       <div className="-mx-4 flex overflow-x-auto sm:mx-0">
         <div className="flex-auto border-b border-gray-200 px-4 sm:px-0">
-          <Tab.List className="-mb-px flex space-x-10">
+          <Tab.List className="-mb-px flex space-x-8">
             <Tab
               className={({ selected }) =>
                 classNames(
                   selected
-                    ? "border-indigo-500 text-indigo-600"
-                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                    ? "border-gray-300 text-gray-200"
+                    : "border-transparent hover:border-gray-300 hover:text-gray-200",
                   "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                 )
               }
@@ -28,8 +28,8 @@ export default function AboutTabs() {
               className={({ selected }) =>
                 classNames(
                   selected
-                    ? "border-indigo-500 text-indigo-600"
-                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                    ? "border-gray-300 text-gray-200"
+                    : "border-transparent hover:border-gray-300 hover:text-gray-200",
                   "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                 )
               }
@@ -40,8 +40,8 @@ export default function AboutTabs() {
               className={({ selected }) =>
                 classNames(
                   selected
-                    ? "border-indigo-500 text-indigo-600"
-                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                    ? "border-gray-300 text-gray-200"
+                    : "border-transparent hover:border-gray-300 hover:text-gray-200",
                   "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                 )
               }
