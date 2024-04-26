@@ -1,10 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { Fragment } from "react";
 import Subtitle from "./Subtitle";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import buildClassNames from "../helpers/cssClassFormatter";
 
 export default function AboutTabs() {
   return (
@@ -14,7 +11,7 @@ export default function AboutTabs() {
           <Tab.List className="-mb-px flex space-x-8">
             <Tab
               className={({ selected }) =>
-                classNames(
+                buildClassNames(
                   selected
                     ? "border-gray-300 text-gray-200"
                     : "border-transparent hover:border-gray-300 hover:text-gray-200",
@@ -26,7 +23,7 @@ export default function AboutTabs() {
             </Tab>
             <Tab
               className={({ selected }) =>
-                classNames(
+                buildClassNames(
                   selected
                     ? "border-gray-300 text-gray-200"
                     : "border-transparent hover:border-gray-300 hover:text-gray-200",
@@ -38,7 +35,7 @@ export default function AboutTabs() {
             </Tab>
             <Tab
               className={({ selected }) =>
-                classNames(
+                buildClassNames(
                   selected
                     ? "border-gray-300 text-gray-200"
                     : "border-transparent hover:border-gray-300 hover:text-gray-200",
