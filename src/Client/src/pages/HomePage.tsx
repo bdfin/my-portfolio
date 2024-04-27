@@ -1,5 +1,6 @@
 import AnchorLink from "../components/AnchorLink";
 import Subtitle from "../components/Subtitle";
+import TechIcons from "../components/TechIcons";
 import Text from "../components/Text";
 import Title from "../components/Title";
 
@@ -21,6 +22,8 @@ export default function HomePage() {
         heading up the tech as CTO at a cool startup called{" "}
         <AnchorLink href="https://unhurdmusic.com">un:hurd music</AnchorLink>.
       </Text>
+
+      <TechIcons className="mt-20 mb-10" />
     </>
   );
 }
