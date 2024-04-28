@@ -32,7 +32,6 @@ export default function NavBar() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <NavLink to="/contact">Contact</NavLink>
           <NavLink to="/about">This App</NavLink>
         </Popover.Group>
       </nav>
@@ -61,12 +60,6 @@ export default function NavBar() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-200/10">
               <div className="space-y-2 py-6">
-                <NavLink
-                  to="/contact"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7"
-                >
-                  Contact
-                </NavLink>
                 <NavLink
                   to="/about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7"

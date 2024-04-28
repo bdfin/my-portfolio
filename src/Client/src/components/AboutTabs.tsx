@@ -1,11 +1,8 @@
 import { Tab } from "@headlessui/react";
 import { Fragment, ReactNode } from "react";
-import { SiAzurefunctions, SiMicrosoftazure, SiReact } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { SiMicrosoftazure, SiReact } from "react-icons/si";
 import buildClassNames from "../helpers/cssClassFormatter";
 import AnchorLink from "./AnchorLink";
-import List from "./List";
-import ListItem from "./ListItem";
 import Subtitle from "./Subtitle";
 import Text from "./Text";
 
@@ -58,61 +55,6 @@ const tabs: AboutTab[] = [
     ],
   },
   {
-    tabName: "Back-end",
-    title: (
-      <Subtitle>
-        Back-end <SiAzurefunctions className="ml-2" />
-      </Subtitle>
-    ),
-    subtitle: ".NET Azure Functions API",
-    content: [
-      <Text>
-        There is a very minimal API used as the back-end of this app to allow
-        users to contact me directly via the{" "}
-        <Link
-          to="/contact"
-          className="underline underline-offset-2 hover:underline-offset-4"
-        >
-          contact
-        </Link>{" "}
-        page. This will be expanded to serve the technical blog I'm building as
-        a new feature that will be available soon.
-      </Text>,
-      <Text>The contact API endpoint currently:</Text>,
-      <List className="pb-4 pt-2">
-        <ListItem>
-          Validates a{" "}
-          <AnchorLink href="https://www.google.com/recaptcha/about/">
-            Google reCAPTCHA
-          </AnchorLink>{" "}
-          token to protect against fraudulent submissions.
-        </ListItem>
-        <ListItem>
-          Builds a HTML email from the information provided in the form.
-        </ListItem>
-        <ListItem>
-          Sends an email directly to my inbox using the{" "}
-          <AnchorLink href="https://sendgrid.com/en-us">SendGrid</AnchorLink>{" "}
-          API.
-        </ListItem>
-      </List>,
-      <Text>
-        The API is written in .NET 8 using{" "}
-        <AnchorLink href="https://azure.microsoft.com/en-gb/products/functions">
-          Azure Serverless Functions
-        </AnchorLink>{" "}
-        with a HTTP trigger to act as an API endpoint. For larger scale projects
-        I would almost always opt for a fully-featured{" "}
-        <AnchorLink href="https://dotnet.microsoft.com/en-us/apps/aspnet/apis">
-          Web API
-        </AnchorLink>
-        , however Azure Functions provide automatic elastic scaling with
-        consumption-based billing and a generous free-tier, making them perfect
-        for smaller projects like this.
-      </Text>,
-    ],
-  },
-  {
     tabName: "Hosting",
     title: (
       <Subtitle>
@@ -141,9 +83,9 @@ const tabs: AboutTab[] = [
       </Text>,
       <Text>
         Using Static Web Apps on Azure has meant that I have been able to build,
-        deploy and serve this site and API completely free (with the exception
-        of the domain name). The next thing on the roadmap is building a simple
-        blog using an{" "}
+        deploy and serve this site completely free (with the exception of the
+        domain name). The next thing on the roadmap is building a simple blog
+        using an{" "}
         <AnchorLink href="https://azure.microsoft.com/en-gb/products/azure-sql/database">
           Azure SQL database
         </AnchorLink>{" "}
