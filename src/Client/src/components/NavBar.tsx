@@ -45,7 +45,11 @@ export default function NavBar() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 bg-black w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 text-white sm:border-l-2">
           <div className="flex items-center justify-between">
-            <Link to="/" className="-m-1.5 p-1.5">
+            <Link
+              to="/"
+              className="-m-1.5 p-1.5"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <span className="sr-only">Beau Findlay</span>
               <img className="h-16 w-auto" src={logo} alt="Logo" />
             </Link>
@@ -64,12 +68,14 @@ export default function NavBar() {
                 <NavLink
                   to="/work"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Work
                 </NavLink>
                 <NavLink
                   to="/about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   This App
                 </NavLink>
