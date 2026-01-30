@@ -41,6 +41,11 @@ bld/
 ## ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+## Configuration files (ignore environment-specific settings)
+**/appsettings.Development.json
+**/appsettings.*.json
+!**/appsettings.json
+
 ## Publish profiles
 *.pubxml
 *.azurePubxml
