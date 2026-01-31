@@ -13,7 +13,7 @@
 </Text>
 
 <section>
-    <Subtitle>App</Subtitle>
+    <Subtitle>The App</Subtitle>
 
     <Text>
         This app was originally made using
@@ -22,12 +22,13 @@
         <AnchorLink Href="https://react.dev/">React</AnchorLink>
         with
         <AnchorLink Href="https://www.typescriptlang.org/">TypeScript</AnchorLink>
-        as a learning exercise. I've now migrated it back to .NET Blazor to take advantage of static server-side
-        rendering for maximum performance and to remove unnecessary dependencies on large JS and CSS libraries.
+        as a learning exercise. I've now migrated it back to .NET Blazor to take advantage of <AnchorLink Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes?view=aspnetcore-10.0#static-server-side-rendering-static-ssr">SSR (static server-side rendering)</AnchorLink> for maximum performance and to remove unnecessary dependencies on large JS and CSS libraries.
     </Text>
     <Text>
-        This version uses pure vanilla CSS with CSS variables for theming, eliminating all JavaScript and external
-        dependencies; the mobile menu uses a CSS checkbox hack for zero-JavaScript interactivity.
+        Although SSR sacrifices client-side interactivity, for simple sites like this it means that page loads are practically instant and appear to function similarly to SPAs (the browser doesn't reload on navigations, new content is simply swapped in) but without the initial large download of the full application and it's dependencies.
+    </Text>
+    <Text>
+        This version uses pure vanilla CSS with CSS variables for theming, eliminating all JavaScript and external dependencies; the mobile menu uses a CSS checkbox hack for zero-JavaScript interactivity.
     </Text>
 </section>
 
