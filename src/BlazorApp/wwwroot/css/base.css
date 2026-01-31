@@ -6,8 +6,6 @@ body {
     font-family: var(--font-mono);
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typography */
@@ -35,6 +33,28 @@ h3 {
 
 p {
     margin-bottom: var(--space-4);
+}
+
+/* Lists */
+ul {
+    list-style: none;
+    padding-left: var(--space-4);
+}
+
+ul li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-3);
+}
+
+ul li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--color-slate-400);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    font-weight: var(--font-weight-bold);
 }
 
 /* Links */
