@@ -1,0 +1,17 @@
+@* Paragraph component *@
+
+<p class="@CombinedClasses">@ChildContent</p>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? CssClass { get; set; }
+
+    private string CombinedClasses => string.IsNullOrEmpty(CssClass)
+        ? "text-paragraph"
+        : $"text-paragraph {CssClass}";
+
+}

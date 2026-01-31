@@ -1,0 +1,17 @@
+@* H1 heading component *@
+
+<h1 class="@CombinedClasses">@ChildContent</h1>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? CssClass { get; set; }
+
+    private string CombinedClasses => string.IsNullOrEmpty(CssClass)
+        ? "text-4xl py-4"
+        : $"text-4xl py-4 {CssClass}";
+
+}

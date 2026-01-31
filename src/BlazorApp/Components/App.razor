@@ -2,19 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/" />
-    <ResourcePreloader />
-    <link rel="stylesheet" href="css/app.css" />
-    <ImportMap />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <HeadOutlet />
+      <meta charset="utf-8"/>
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1.0"/>
+
+      <base href="/"/>
+
+      <ResourcePreloader/>
+
+      <!-- Styles -->
+      <link rel="stylesheet"
+            href="css/app.css"/>
+
+      <ImportMap/>
+
+      <!-- Standard Favicons -->
+      <link rel="icon"
+            type="image/x-icon"
+            href="images/favicon.ico"/>
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="images/favicon-16x16.png"/>
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="images/favicon-32x32.png"/>
+
+      <!-- Apple Touch Icons -->
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="images/apple-touch-icon.png"/>
+
+      <!-- Android/Chrome -->
+      <link rel="manifest"
+            href="site.webmanifest"/>
+
+      <!-- Microsoft Tiles -->
+      <meta name="msapplication-TileColor"
+            content="#1a1a1a"/>
+      <meta name="msapplication-config"
+            content="browserconfig.xml"/>
+
+      <!-- Theme Color -->
+      <meta name="theme-color"
+            content="#1a1a1a"/>
+
+      <!-- Open Graph / Social Sharing -->
+      <meta property="og:image"
+            content="images/og-image.png"/>
+      <meta property="og:image:width"
+            content="1200"/>
+      <meta property="og:image:height"
+            content="630"/>
+
+      <HeadOutlet/>
 </head>
 
 <body>
-    <Routes />
-    <script src="@Assets["_framework/blazor.web.js"]"></script>
+<Routes/>
+<script src="@Assets["_framework/blazor.web.js"]"></script>
 </body>
 
 </html>

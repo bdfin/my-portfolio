@@ -1,0 +1,17 @@
+@* H2 heading component *@
+
+<h2 class="@CombinedClasses">@ChildContent</h2>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? CssClass { get; set; }
+
+    private string CombinedClasses => string.IsNullOrEmpty(CssClass)
+        ? "flex items-center text-2xl py-4 font-semibold"
+        : $"flex items-center text-2xl py-4 font-semibold {CssClass}";
+
+}

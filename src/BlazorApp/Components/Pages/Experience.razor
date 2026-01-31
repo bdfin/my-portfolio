@@ -1,0 +1,107 @@
+@page "/experience"
+
+<PageTitle>Beau Findlay - Experience</PageTitle>
+
+<Title CssClass="text-center">Experience</Title>
+
+<p class="text-center text-xl font-semibold mb-10   ">
+    Software Engineer since 2018
+</p>
+
+<ol class="timeline">
+    @foreach (var item in experienceTimelineItems)
+    {
+        <li class="timeline-item">
+            <time class="timeline-date">
+                @item.StartDate - @(item.EndDate ?? "Present")
+            </time>
+            <h3 class="timeline-title">
+                @item.Title @("@") <AnchorLink Href="@item.CompanyUrl">@item.CompanyName</AnchorLink>
+            </h3>
+            @foreach (var content in item.Content)
+            {
+                <Text>@content</Text>
+            }
+        </li>
+    }
+</ol>
+
+<Contact/>
+
+@code {
+
+    private readonly List<WorkTimelineItem> experienceTimelineItems =
+    [
+        new()
+        {
+            StartDate = "September 2021",
+            Title = "CTO",
+            CompanyName = "un:hurd music",
+            CompanyUrl = "https://unhurdmusic.com",
+            Content =
+            [
+                "As one of the founding developers at un:hurd music and now Chief Technology Officer, I built and scaled un:hurd's back-end and cloud infrastructure that serves automated marketing soloutions for tens-of-thousands of artists and musicians.",
+                "I lead a small but incredibly talented multi-disciplinary team building on the Azure cloud using a .NET backend, React web front-end and a Swift native iOS app."
+            ]
+        },
+        new()
+        {
+            StartDate = "August 2020",
+            EndDate = "September 2021",
+            Title = "Software Development Lead",
+            CompanyName = "Vouch",
+            CompanyUrl = "https://vouch.co.uk/",
+            Content =
+            [
+                "At Vouch I lead the backend build of a new version of their tenant referencing software - an AI enhanced chat-bot based system utlising Azure Cognitive Services and various supporting serverless APIs written in .NET Core and hosted on Microsoft Azure."
+            ]
+        },
+        new()
+        {
+            StartDate = "May 2020",
+            EndDate = "July 2020",
+            Title = "Software Developer",
+            CompanyName = "Paragon ID",
+            CompanyUrl = "https://www.paragon-id.com/en",
+            Content =
+            [
+                "I joined Paragon ID on a short-term contract where I wrote and deployed two key projects: A complex dashboard for a large construction equipment manufacturer to track assets across various manufacturing stages and a medical assets tracking dashboard deployed and used in multiple hospitals across the UK."
+            ]
+        },
+        new()
+        {
+            StartDate = "July 2019",
+            EndDate = "May 2020",
+            Title = "Software Developer",
+            CompanyName = "Osborne Technologies",
+            CompanyUrl = "https://www.osbornetechnologies.co.uk/",
+            Content =
+            [
+                "I joined Osborne Technologies as the only cloud cloud-specialist and lead a project creating the first web-based version of their flag ship visitor management software utilising ASP.NET Core MVC and Microsoft SQL Server on the Microsoft Azure cloud."
+            ]
+        },
+        new()
+        {
+            StartDate = "September 2018",
+            EndDate = "September 2019",
+            Title = " MSc Computing Student",
+            CompanyName = "Sheffield Hallam University",
+            CompanyUrl = "https://www.shu.ac.uk/courses/computing/msc-computing/full-time",
+            Content =
+            [
+                "I joined Sheffield Hallam University to study for a Master of Science in Computing. During my time there I completed modules in computer programming and web development, databases and big data, computer hardware, project management and my software development thesis; a .NET web application that compiles astronomy and space exploration data from various APIs into an accessible calendar."
+            ]
+        }
+    ];
+
+    private class WorkTimelineItem
+    {
+        public string StartDate { get; init; } = string.Empty;
+        public string? EndDate { get; init; }
+        public string Title { get; init; } = string.Empty;
+        public string CompanyName { get; init; } = string.Empty;
+        public string CompanyUrl { get; init; } = string.Empty;
+        public string[] Content { get; init; } = [];
+    }
+
+}

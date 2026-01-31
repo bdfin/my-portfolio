@@ -1,0 +1,70 @@
+@* Navigation bar with mobile menu *@
+
+<div class="navbar">
+    <header>
+        <nav aria-label="Global">
+            <div class="logo-container">
+                <a href="/"
+                   class="logo-link">
+                    <span class="sr-only">Beau Findlay</span>
+                    <img src="images/logo.webp"
+                         alt="Logo"/>
+                </a>
+            </div>
+            <div class="mobile-menu-button-container">
+                <label for="mobile-menu-toggle"
+                       class="menu-button">
+                    <span class="sr-only">Open main menu</span>
+                    <Icon Type="IconType.Menu"/>
+                </label>
+            </div>
+            <div class="desktop-nav">
+                <NavLink href="/experience">Experience</NavLink>
+                <NavLink href="/about">This app</NavLink>
+            </div>
+        </nav>
+
+        @* Mobile menu using CSS checkbox hack *@
+        <input type="checkbox"
+               id="mobile-menu-toggle"
+               class="menu-toggle"/>
+        <div class="mobile-menu-overlay"></div>
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-inner">
+                <div class="mobile-menu-header">
+                    <a href="/"
+                       class="logo-link">
+                        <span class="sr-only">Beau Findlay</span>
+                        <img src="images/logo.webp"
+                             alt="Logo"/>
+                    </a>
+                    <label for="mobile-menu-toggle"
+                           class="close-button">
+                        <span class="sr-only">Close menu</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke-width="1.5"
+                             stroke="currentColor"
+                             aria-hidden="true">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </label>
+                </div>
+                <div class="mobile-menu-body">
+                    <div class="mobile-nav-links">
+                        <NavLink href="/experience">Experience</NavLink>
+                        <NavLink href="/about">This App</NavLink>
+                    </div>
+                    <div class="mobile-social-divider">
+                        <div class="mobile-social-container">
+                            <SocialIcons/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
