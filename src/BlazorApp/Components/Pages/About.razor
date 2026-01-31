@@ -9,7 +9,8 @@
     project is available on my
     <AnchorLink Href="https://github.com/bdfin/my-portfolio">
         GitHub
-    </AnchorLink>.
+    </AnchorLink>
+    .
 </Text>
 
 <section>
@@ -22,13 +23,21 @@
         <AnchorLink Href="https://react.dev/">React</AnchorLink>
         with
         <AnchorLink Href="https://www.typescriptlang.org/">TypeScript</AnchorLink>
-        as a learning exercise. I've now migrated it back to .NET Blazor to take advantage of <AnchorLink Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes?view=aspnetcore-10.0#static-server-side-rendering-static-ssr">SSR (static server-side rendering)</AnchorLink> for maximum performance and to remove unnecessary dependencies on large JS and CSS libraries.
+        as a learning exercise. I've now migrated it back to .NET Blazor to take advantage of
+        <AnchorLink Href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes?view=aspnetcore-10.0#static-server-side-rendering-static-ssr">
+            SSR (static server-side rendering)
+        </AnchorLink>
+        for maximum performance and to remove unnecessary dependencies on large JS and CSS libraries.
     </Text>
     <Text>
-        Although SSR sacrifices client-side interactivity, for simple sites like this it means that page loads are practically instant and appear to function similarly to SPAs (the browser doesn't reload on navigations, new content is simply swapped in) but without the initial large download of the full application and it's dependencies.
+        Although SSR sacrifices client-side interactivity, for simple sites like this it means that page loads are
+        practically instant and appear to function similarly to SPAs (the browser doesn't reload on navigations, new
+        content is simply swapped in) but without the initial large download of the full application and it's
+        dependencies.
     </Text>
     <Text>
-        This version uses pure vanilla CSS with CSS variables for theming, eliminating all JavaScript and external dependencies; the mobile menu uses a CSS checkbox hack for zero-JavaScript interactivity.
+        This version uses pure vanilla CSS with CSS variables for theming, eliminating all JavaScript and external
+        dependencies; the mobile menu uses a CSS checkbox hack for zero-JavaScript interactivity.
     </Text>
 </section>
 
@@ -36,7 +45,34 @@
     <Subtitle>Hosting & Deployment</Subtitle>
 
     <Text>
-        TODO: This section
+        When this app was written in Blazor WASM and then React (both client-side-only technologies) it was hosted on an
+        <AnchorLink Href="https://learn.microsoft.com/en-us/azure/static-web-apps/overview">Azure Static Web App
+        </AnchorLink>
+        and deployed via
+        <AnchorLink Href="https://github.com/features/actions">GitHub Actions</AnchorLink>
+        . This provided an easy and cost effective way to get something out there without worrying too much about the
+        infrastructure. With this being a personal project I needed to keep the costs minimal and even though I would've
+        preferred a server to work with there wasn't many free options.
+    </Text>
+    <Text>
+        I've always been a bit of a networking/homelab/server nerd so as soon as Cloudflare announced their
+        <AnchorLink Href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/">
+            Tunnels
+        </AnchorLink>
+        feature I decided to revisit this site, rebuild in a server-side technology and host it myself on a tiny,
+        low-power
+        <AnchorLink Href="https://www.raspberrypi.com/">RaspberryPi</AnchorLink>
+        computer running a headless linux operating system.
+    </Text>
+    <Text>
+        I setup the RaspberryPi with
+        <AnchorLink Href="https://www.docker.com/">Docker</AnchorLink>
+        and
+        <AnchorLink Href="https://docs.docker.com/compose/">Docker Compose</AnchorLink>
+        , built a Docker container for the .NET app to run from, copied it to my server and created a docker-compose.yml
+        file to run it with the
+        <AnchorLink Href="https://hub.docker.com/r/cloudflare/cloudflared">Cloudflare Tunnel</AnchorLink>
+        docker image.
     </Text>
 </section>
 
