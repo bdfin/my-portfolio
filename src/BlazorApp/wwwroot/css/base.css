@@ -1,0 +1,114 @@
+/* Base Styles */
+
+body {
+    background-color: var(--color-black);
+    color: var(--color-slate-50);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+}
+
+h1 {
+    font-size: var(--font-size-3xl);
+}
+
+h2 {
+    font-size: var(--font-size-2xl);
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+}
+
+p {
+    margin-bottom: var(--space-4);
+}
+
+/* Lists */
+ul {
+    list-style: none;
+    padding-left: var(--space-4);
+}
+
+ul li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-3);
+}
+
+ul li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--color-slate-400);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    font-weight: var(--font-weight-bold);
+}
+
+/* Links */
+a {
+    color: var(--color-slate-50);
+    display: inline-block;
+    transition: transform var(--transition-base) var(--transition-timing);
+}
+
+a:hover {
+    transform: translateY(2px);
+    color: var(--color-slate-50);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-slate-50);
+    outline-offset: 2px;
+}
+
+/* Focus */
+*:focus-visible {
+    outline: 2px solid var(--color-slate-50);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--color-slate-50);
+    outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--color-slate-50);
+    color: var(--color-black);
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--color-white);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--color-black);
+    border: 1px solid var(--color-white);
+}
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-black) var(--color-white);
+}

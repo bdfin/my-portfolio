@@ -1,0 +1,25 @@
+@* External link component *@
+
+<a href="@Href"
+   target="@Target"
+   class="@CombinedClasses">@ChildContent</a>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public string Target { get; set; } = "_blank";
+
+    [Parameter]
+    public string? CssClass { get; set; }
+
+    private string CombinedClasses => string.IsNullOrEmpty(CssClass)
+        ? "underline underline-offset-2"
+        : $"underline underline-offset-2 {CssClass}";
+
+}
